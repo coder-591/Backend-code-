@@ -45,10 +45,10 @@ This format contains binary file data + text fields together in chunks.
 <b>2. Browser Creates an HTTP Request</b><br>
 <b>Request contains that what type of method you use e.g(get,post, etc.) ?, what type of host is ?,What type of content of the data and its length.Finally the data you fill in login form</b><br>
 
-1- POST /login HTTP/1.1<br>
-2- Host: localhost:5000<br>
-3- Content-Type: application/json<br>
-4- Content-Length: 42<br>
+1- POST /login HTTP/1.1 <br>
+2- Host: localhost:5000 <br>
+3- Content-Type: application/json <br>
+4- Content-Length: 42 <br>
 5- {
 "email": "test@gmail.com",
 "password": "12345"
