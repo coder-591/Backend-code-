@@ -34,3 +34,6 @@ This format contains binary file data + text fields together in chunks.
 # TypeError: Cannot read properties of undefined
  * This error come from optional chaining or checking
 
+# How data flows from front-end to back-end
+
+<b>Browser Creates an HTTP Request</b>
