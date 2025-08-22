@@ -40,7 +40,7 @@ This format contains binary file data + text fields together in chunks.
 
 # How data flows from front-end to back-end
 
-<b>1. User Fills the Login Form</b><br>
+<b>1.User Fills the Login Form</b><br>
 
 <b>2. Browser Creates an HTTP Request</b><br>
 <b>Request contains that what type of method you use e.g(get,post, etc.) ?, what type of host is ?,What type of content of the data and its length.Finally the data you fill in login form</b><br>
@@ -52,4 +52,30 @@ This format contains binary file data + text fields together in chunks.
 5- {
 "email": "test@gmail.com",
 "password": "12345"
-}
+}<br>
+
+<b>3.Data Travels Over the Network</b><br>
+
+The browser sends this HTTP request over TCP/IP → goes through your OS → network stack → reaches your backend server (e.g. Express).
+
+<b>4.Server Receives Request</b><br>
+
+In Node.js (Express), the server sees:<br>
+1- req.method → POST<br>
+2- req.url → /login<br>
+3- req.headers → { "content-type": "application/json", ... }<br>
+4- req.body → not ready yet (still a raw stream!)<br>
+
+<b>5.Express Middleware Parses Body</b><br>
+
+When you add in your code it parses or read the raw data and convert into json format or JS object and lastly it attach the converted data with req.body => it is by default "undefiend":<br>
+* app.use(express.json());<br>
+
+<b>Flow in One Line</b><br>
+
+* Form → Browser builds HTTP request → Sends over network → Server receives raw stream → Middleware parses → Data attached to req.body.
+
+
+
+
+
