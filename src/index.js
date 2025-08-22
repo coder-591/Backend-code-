@@ -17,6 +17,21 @@ connectionDB()
     console.log("Connection failed !!", err);
   });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 // First approach is use in main file
 // two step for connecting database
 // 1 is always connnect database in try catch block
