@@ -69,13 +69,16 @@ In Node.js (Express), the server sees:<br>
 <b>5.Express Middleware Parses Body</b><br>
 
 When you add in your code it parses or read the raw data and convert into json format or JS object and lastly it attach the converted data with req.body => it is by default "undefiend".<br>
-* app.use(express.json());<br>
+
+- app.use(express.json());<br>
 
 <b>Flow in One Line</b><br>
 
-* Form → Browser builds HTTP request → Sends over network → Server receives raw stream → Middleware parses → Data attached to req.body.
+- Form → Browser builds HTTP request → Sends over network → Server receives raw stream → Middleware parses → Data attached to req.body.
 
+# About request and response objects
 
-
-
-
+1- req and res are created by Node.js http server.<br>
+2- Express wraps & extends them with extra methods.<br>
+3- They are passed automatically into your route handler.<br>
+4- You don’t define them → they are provided by default per request.<br>
