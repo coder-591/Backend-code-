@@ -1,5 +1,6 @@
 # Steps for user creation
-1- get user details from frontend <br> 
+
+1- get user details from frontend <br>
 2- validation - not empty <br>
 3- check if user is already exists: username, email <br>
 4- check for images,check for avatar <br>
@@ -10,6 +11,7 @@
 9- return res <br>
 
 # Multer middleware or package
+
 Multer looks at the incoming request.If the "Content-Type" is "multipart/form-data", it parses it.
 <br>
 For each file field, Multer:
@@ -25,6 +27,7 @@ Multipart format:
 This format contains binary file data + text fields together in chunks.
 
 # .env Errors
+
 1- Using wrong .env variable names.
 <br>
 2- .env file not being loaded (forgot dotenv.config() in your server.js).
@@ -32,8 +35,21 @@ This format contains binary file data + text fields together in chunks.
 3- Putting credentials in process.env but not restarting the server.
 
 # TypeError: Cannot read properties of undefined
- * This error come from optional chaining or checking
+
+- This error come from optional chaining or checking
 
 # How data flows from front-end to back-end
 
-<b>Browser Creates an HTTP Request</b>
+<b>1. User Fills the Login Form</b><br>
+
+<b>2. Browser Creates an HTTP Request</b><br>
+<b>Request contains that what type of method you use e.g(get,post, etc.) ?, what type of host is ?,What type of content of the data and its length.Finally the data you fill in login form</b><br>
+
+1- POST /login HTTP/1.1
+2- Host: localhost:5000
+3- Content-Type: application/json
+4- Content-Length: 42
+5- {
+"email": "test@gmail.com",
+"password": "12345"
+}
