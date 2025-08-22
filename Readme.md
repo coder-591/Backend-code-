@@ -68,7 +68,7 @@ In Node.js (Express), the server sees:<br>
 
 <b>5.Express Middleware Parses Body</b><br>
 
-When you add in your code it parses or read the raw data and convert into json format or JS object and lastly it attach the converted data with req.body => it is by default "undefiend":<br>
+When you add in your code it parses or read the raw data and convert into json format or JS object and lastly it attach the converted data with req.body => it is by default "undefiend".<br>
 * app.use(express.json());<br>
 
 <b>Flow in One Line</b><br>
