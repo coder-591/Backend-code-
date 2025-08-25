@@ -82,3 +82,8 @@ When you add in your code it parses or read the raw data and convert into json f
 2- Express wraps & extends them with extra methods.<br>
 3- They are passed automatically into your route handler.<br>
 4- You don’t define them → they are provided by default per request.<br>
+
+# About Aggregate pinelines 
+Here the you can learn about pinelines:<br>
+
+https://www.mongodb.com/docs/manual/core/aggregation-pipeline/#aggregation-pipeline
