@@ -86,7 +86,6 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
     username,
   });
-  // console.log(user);
   // 7
   const createdUser = await User.findById(user._id).select(
     "-password -refreshToken"
@@ -136,6 +135,9 @@ const loginUser = asyncHandler(async (req, res) => {
     user._id
   );
 
+  if (!(refreshToken || accessToken)) {
+    throw new ApiError(500, "Tokens cannot be created any how");
+  }
   const loggedInUser = await User.findById(user._id).select(
     "-password -refreshToken"
   );
@@ -164,22 +166,27 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 const logOutUser = asyncHandler(async (req, res) => {
+
+  // console.log("User ID", req.user._id);
+
   await User.findByIdAndUpdate(
     req.user._id,
     {
-      $set: {
-        refreshToken: undefined,
+      $unset: {
+        refreshToken: true,
       },
     },
     {
       new: true,
     }
   );
+
   const options = {
     httpOnly: true,
     secure: true,
   };
-  res
+
+  return res
     .status(200)
     .clearCookie("accessToken", options)
     .clearCookie("refreshToken", options)

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import { DB_Name } from "../constants.js";
+import { DB_Name } from "../constant.js";
+
 // when ever async function runs it return a Promise
 const connectionDB = async () => {
   try {
