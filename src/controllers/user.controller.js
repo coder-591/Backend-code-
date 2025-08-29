@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
@@ -360,7 +361,7 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
       // localField: <field from the input documents>,
       // foreignField: <field from the documents of the "from" collection>
       $lookup: {
-        from: "Subscription",
+        from: "subscriptions",
         localField: "_id",
         foreignField: "channel",
         as: "subscribers",
@@ -369,7 +370,7 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
     // third stage
     {
       $lookup: {
-        from: "Subscription",
+        from: "subscriptions",
         localField: "_id",
         foreignField: "subscriber",
         as: "subscribedTo",
@@ -419,6 +420,62 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
     );
 });
 
+const getWatchHistory = asyncHandler(async (req, res) => {
+  // TODO: understand again
+  const user = await User.aggregate([
+    {
+      $match: {
+        _id: new mongoose.Schema.Types.ObjectId(req.user._id),
+      },
+    },
+
+    {
+      $lookup: {
+        from: "videos",
+        localField: "watchHistory",
+        foreignField: "_id",
+        as: "watchHistory",
+        pipeline: [
+          {
+            $lookup: {
+              from: "users",
+              localField: "owner",
+              foreignField: "_id", // users Id
+              as: "owner",
+              pineline: [
+                {
+                  $project: {
+                    fullName: 1,
+                    username: 1,
+                    avatar: 1,
+                  },
+                },
+              ],
+            },
+          },
+          {
+            $addFields: {
+              owner: {
+                $first: "$owner",
+              },
+            },
+          },
+        ],
+      },
+    },
+  ]);
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(
+        200,
+        user[0].watchHistory,
+        "watch History fetched successfully"
+      )
+    );
+});
+
 export {
   registerUser,
   loginUser,
@@ -430,4 +487,5 @@ export {
   updateAvatar,
   updateCoverImage,
   getUserChannelProfile,
+  getWatchHistory,
 };
