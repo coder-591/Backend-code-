@@ -315,6 +315,7 @@ const updateCoverImage = asyncHandler(async (req, res) => {
   if (!coverImageLocalPath) {
     throw new ApiError(400, "coverImage is missing");
   }
+  // TODO:delete old image - assignment
 
   const coverImage = await fileUploader(coverImageLocalPath);
 
