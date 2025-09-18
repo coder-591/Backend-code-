@@ -31,7 +31,7 @@ router.route("/register").post(
   ]),
   registerUser
 );
-router.route("/login").post(loginUser);
+router.route("/login").post(loginUser);x
 
 // secured route
 // TODO: understand all routes
